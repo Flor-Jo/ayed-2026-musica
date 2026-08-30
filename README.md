@@ -5,12 +5,12 @@ Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src
 ## Integrantes
 
 | Nombre | Mail | GitHub |
-| --- | --- | --- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+|Florencia Lujan Salinas | Florsalinas25@live.com | @Flor-Jo |
+|Sebastian Aquino Frago | sebas.aquinofrago@gmail.com  | @Sebas_AF |
+|Florencia Soffiantini| fsoffiantini@gmail.com | @fsoffian
 
-**Tema elegido:** Pokédex / Recetario / Biblioteca musical (dejar uno)
+
+**Tema elegido:** Biblioteca musical
 
 ## Cómo ejecutar
 
