@@ -1,6 +1,6 @@
 from src.config import TEMA
 
-from dominio.catalogo import obtener_catalogo
+from src.dominio.catalogo import obtener_catalogo
 
 TEMAS = {
     "pokedex": "Pokédex",
