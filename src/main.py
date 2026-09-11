@@ -11,7 +11,12 @@ TEMAS = {
 
 def pendiente():
     print("Todavía no está implementado. Completar en la entrega que corresponde.")
-
+    
+def listar_catalogo():
+    canciones = obtener_catalogo()
+    print("\n--- Catalogo de Musica (Pop 2000s) ---")
+    for tema in canciones:
+        print(f"[{tema['id']}] {tema['titulo']} - {tema['artista']} ({tema['anio']}) [{tema['duracion']}]")
 
 def mostrar_menu():
     nombre = TEMAS.get(TEMA, TEMA or "(sin tema)")
