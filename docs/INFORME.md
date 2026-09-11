@@ -4,7 +4,7 @@ Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones c
 
 ## 1. Grupo y tema
 
-- Tema:
+- Tema: Biblioteca musical
 - Por qué lo eligieron (5–8 líneas):
 
 ## 2. Modelo
