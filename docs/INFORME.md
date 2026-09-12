@@ -6,8 +6,8 @@ Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones c
 
 - Tema: Biblioteca musical
 - Por qué lo eligieron (5–8 líneas):
-Elegimos el tema Biblioteca musical (Pop 2000s) porque es un dominio familiar con atributos heterogéneos como identificador, título, artista, año y duración.
-Este dominio facilita implementar algoritmos de ordenamiento, búsquedas por filtros y estructuras lineales como playlists.
+Elegimos la Biblioteca Musical porque tiene una estructura de datos homogénea y directa (título, artista, año, duración).
+Todos los integrantes estamos familiarizados con el uso de un reproductor de música y nos pareció la forma más intuitiva de abordar el proyecto.
 Para el catálogo en memoria se utilizó una lista (list, mutable) que agrupa los elementos y permite modificar, agregar o reordenar canciones dinámicamente.
 Cada tema se representó mediante diccionarios (dict, mutables) con pares clave-valor, otorgando acceso semántico directo a sus distintas propiedades.
 Por último, los valores de cada campo se definieron con tipos inmutables como enteros (int) y cadenas de texto (str), garantizando la integridad de los datos primitivos.
