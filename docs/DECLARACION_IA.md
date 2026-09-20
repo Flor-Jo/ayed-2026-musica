@@ -13,4 +13,4 @@ Fecha de esta versión del archivo: 20-09-2026
 | E5 | | | | | | |
 | E6 | | | | | | |
 
-Compromiso: cualquiera del grupo puede explicar cualquier archivo del tag.
+Compromiso: cualquiera del grupo puede explicar cualquier archivo del tag. 
