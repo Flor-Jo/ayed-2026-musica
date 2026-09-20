@@ -20,12 +20,25 @@ Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacio
 (pueden pegar un diagrama ASCII o una lista de clases)
 ```
 
-## 3. Recursión (E2)
+## Recursión (E2)
 
-- Función:
-- Caso base:
-- Caso recursivo:
-- Traza de un ejemplo real del dataset:
+Función: `obtener_todas_las_versiones(self, id_cancion)`
+Caso base: si la canción no tiene versiones derivadas directas en el mapa, devuelve `[]`.
+Caso recursivo: devuelve la lista de versiones directas + `obtener_todas_las_versiones(v_id)` por cada versión directa encontrada.
+
+Traza para la canción ID 2 ("Bad Romance"): según el mapa en memoria, la ID 2 deriva en la 8, y la 8 deriva en la 1.
+Llamada 1: `obtener_todas_las_versiones(2)` -> tiene directa [8]
+   -> devuelve [8] + `obtener_todas_las_versiones(8)`
+Llamada 2: `obtener_todas_las_versiones(8)` -> tiene directa [1]
+   -> devuelve [1] + `obtener_todas_las_versiones(1)`
+Llamada 3: `obtener_todas_las_versiones(1)` -> NO tiene directas (caso base)
+   -> devuelve []
+
+Resultado de la desapilación: 
+Retorno Llamada 3: []
+Retorno Llamada 2: [1] + [] = [1]
+Retorno Llamada 1: [8] + [1] = [8, 1]
+Resultado final: [8, 1]
 
 ## 4. TADs (E3)
 

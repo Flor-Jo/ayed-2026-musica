@@ -3,7 +3,10 @@
 # "pokedex" | "recetario" | "musica"
 TEMA = "musica"
 
-#Segun entrega 2 el catalogo inicial va en config.py
+# Por que los datos están acá?
+# Según la guía de la E1 y E2, todavía no leemos los archivos .txt de la carpeta data/.
+# Por ahora, los datos base los simulamos acá como una lista de diccionarios
+# para poder probar que nuestras clases y la recursión funcionan.
 
 CATALOGO_POP_2000S = [
     {
@@ -64,7 +67,8 @@ CATALOGO_POP_2000S = [
     }
 ]
 
-
+# esta funcion en el main.py original la usaba, pero en la E2 
+# lo ideal es que la clase Biblioteca consuma la variable CATALOGO_POP_2000S directamente.
 def obtener_catalogo():
     return CATALOGO_POP_2000S
 
