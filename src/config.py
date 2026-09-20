@@ -70,5 +70,6 @@ CATALOGO_POP_2000S = [
 # esta funcion en el main.py original la usaba, pero en la E2 
 # lo ideal es que la clase Biblioteca consuma la variable CATALOGO_POP_2000S directamente.
 def obtener_catalogo():
+    
     return CATALOGO_POP_2000S
 
