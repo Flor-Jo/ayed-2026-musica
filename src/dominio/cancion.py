@@ -15,3 +15,4 @@ class Cancion:
         # En vez de que el main.py este armando el string a mano, cada Cancion sabe como imprimirse a si misma.
         # El main solo llama a este método.
         return f"[{self.id}] '{self.titulo}' - {self.artista} ({self.anio}) [{self.duracion}]"
+        
