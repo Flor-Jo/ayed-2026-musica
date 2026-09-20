@@ -69,7 +69,7 @@ Mediciones (`time.perf_counter`):
 - Cómo se actualiza un registro por posición:
 
 ## 7. Reparto de trabajo (E6)
-
+ 
 | Integrante | Qué hizo | Qué puede defender |
 | --- | --- | --- |
 |  |  |  |
