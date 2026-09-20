@@ -83,3 +83,4 @@ class Biblioteca:
 
         # Devolvemos la lista acumulada (se van desapilando los retornos).
         return resultado
+        
