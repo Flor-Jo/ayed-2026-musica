@@ -27,4 +27,4 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 | P18 | E4 | Ordenar por un criterio y después por otro | | el orden cambia | no corrido | |
 | P19 | E5 | Guardar CSV, salir, volver a entrar | | los datos siguen | no corrido | |
 | P20 | E5 | Guardar binario y modificar un registro por id | | al recargar, ese campo cambió | no corrido | |
-| P21 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido | no corrido | |
+| P21 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido | no corrido | | 
