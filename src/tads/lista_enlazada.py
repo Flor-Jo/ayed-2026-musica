@@ -83,3 +83,18 @@ class ListaEnlazada:
             yield actual.dato
             # Avanzamos al siguiente nodo
             actual = actual.siguiente
+            
+    def ver_primero(self):
+        """Devuelve el dato del primer nodo sin quitarlo (None si está vacía)."""
+        if self.esta_vacia():
+            return None
+        return self._cabeza.dato
+
+    def eliminar_primero(self):
+        """Desvincula y devuelve el dato del primer nodo en O(1)."""
+        if self.esta_vacia():
+            return None
+        dato = self._cabeza.dato
+        self._cabeza = self._cabeza.siguiente
+        self._tamanio -= 1
+        return dato
