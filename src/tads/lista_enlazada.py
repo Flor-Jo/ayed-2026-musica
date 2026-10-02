@@ -97,4 +97,4 @@ class ListaEnlazada:
         dato = self._cabeza.dato
         self._cabeza = self._cabeza.siguiente
         self._tamanio -= 1
-        return dato
+        return dato 
