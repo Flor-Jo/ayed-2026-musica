@@ -15,11 +15,7 @@ class Cola:
         # Si nadie esta esperando en la fila, lanzamos la excepcion
         if self.esta_vacia():
             raise ColaVaciaError("No hay elementos en la cola.")
-        # Obtenemos al que esta primero en la fila
-        frente = self.ver_frente()
-        # Lo sacamos de la lista
-        self._items.eliminar(frente)
-        return frente
+       return self._items.eliminar_primero()
 
     def ver_frente(self):
         # Vemos quien es el proximo a salir sin sacarlo
