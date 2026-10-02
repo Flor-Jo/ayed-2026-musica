@@ -30,3 +30,4 @@ class Playlist:
     def __iter__(self):
         """Permite iterar directamente sobre las canciones usando el iterador del TAD."""
         return iter(self._canciones)
+ 
