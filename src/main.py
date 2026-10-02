@@ -5,7 +5,14 @@ from src.config import TEMA
 # Porque el profe en la guía de la E2 dice que el main NO puede tener 
 # la lógica de negocio. Todo el manejo de datos tiene que pasar por esta clase.
 from src.dominio.biblioteca import Biblioteca
-
+from src.dominio.playlist import Playlist
+from src.tads.pila import Pila
+from src.tads.cola import Cola
+from src.excepciones import (
+    PilaVaciaError,
+    ColaVaciaError,
+    ColeccionLlenaError,
+)
 TEMAS = {
     "pokedex": "Pokédex",
     "recetario": "Recetario",
@@ -36,6 +43,10 @@ def main():
     # Para que al arrancar el programa, la clase cargue las canciones en la memoria.
     # Asi dejamos de usar diccionarios sueltos en el main, cumpliendo con la consigna de usar objetos.
     biblioteca = Biblioteca()
+    playlist = Playlist(nombre="Favoritos Pop 2000s", capacidad_maxima=5)
+    # E3: Pila para historial (deshacer) y Cola para reproducción
+    historial = Pila()
+    cola_reproduccion = Cola()
 
     opcion = None
     while opcion != "0":
@@ -66,6 +77,8 @@ def main():
                 if cancion:
                     print("\nDetalle de la canción:")
                     print(cancion.resumen())
+                    # Agregamos al historial (Pila) al consultar detalle
+                    historial.apilar(cancion)
                 else:
                     print("\nError: Canción no encontrada.")
             except ValueError:
@@ -88,6 +101,95 @@ def main():
                     print(f"\nVersiones derivadas del ID {id_buscar}: {versiones}")
             except ValueError:
                 print("\nError: El ID debe ser un número entero.")
+                
+        elif opcion == "6":
+            print(f"\n--- {playlist.nombre} ({playlist.cantidad()}/{playlist.capacidad_maxima}) ---")
+            print("a. Ver canciones en la playlist")
+            print("b. Agregar canción a la playlist")
+            sub_op = input("Elige una opción (a/b): ").strip().lower()
+
+            if sub_op == "a":
+                if playlist.esta_vacia():
+                    print("La playlist está vacía.")
+                else:
+                    print("\nCanciones en tu playlist:")
+                    # Uso obligatorio del iterador de la ListaEnlazada
+                    for c in playlist:
+                        print(f" - {c.resumen()}")
+
+            elif sub_op == "b":
+                try:
+                    id_c = int(input("ID de canción a agregar a la playlist: "))
+                    c = biblioteca.buscar_por_id(id_c)
+                    if not c:
+                        print("Error: La canción no existe en el catálogo.")
+                    else:
+                        playlist.agregar_cancion(c)
+                        print(f"'{c.titulo}' agregada con éxito a la playlist.")
+                except ValueError:
+                    print("Error: El ID debe ser un número entero.")
+                except ColeccionLlenaError as e:
+                    # Captura estricta de la excepción propia (Punto 6 de la consigna)
+                    print(f"No se pudo agregar: {e}")
+            else:
+                print("Opción inválida dentro de playlist.")
+
+        elif opcion == "7":
+            print("\n--- Historial de navegación (Pila - LIFO) ---")
+            print("a. Ver última canción consultada (tope)")
+            print("b. Deshacer / quitar última consulta")
+            sub_op = input("Elige una opción (a/b): ").strip().lower()
+
+            if sub_op == "a":
+                try:
+                    ultima = historial.ver_tope()
+                    print(f"Última canción en el tope: {ultima.resumen()}")
+                except PilaVaciaError as e:
+                    print(f"Aviso: {e}")
+
+            elif sub_op == "b":
+                try:
+                    desapilada = historial.desapilar()
+                    print(f"Se quitó del historial: {desapilada.resumen()}")
+                except PilaVaciaError as e:
+                    print(f"Aviso: {e}")
+            else:
+                print("Opción inválida dentro de historial.")
+
+        elif opcion == "8":
+            print("\n--- Cola de reproducción (Cola - FIFO) ---")
+            print("a. Encolar canción para reproducir")
+            print("b. Reproducir siguiente canción (desencolar)")
+            print("c. Ver próxima canción en turno")
+            sub_op = input("Elige una opción (a/b/c): ").strip().lower()
+
+            if sub_op == "a":
+                try:
+                    id_c = int(input("ID de canción a poner en cola: "))
+                    c = biblioteca.buscar_por_id(id_c)
+                    if not c:
+                        print("Error: Canción no encontrada.")
+                    else:
+                        cola_reproduccion.encolar(c)
+                        print(f"'{c.titulo}' agregada a la cola de reproducción.")
+                except ValueError:
+                    print("Error: El ID debe ser un número entero.")
+
+            elif sub_op == "b":
+                try:
+                    sonando = cola_reproduccion.desencolar()
+                    print(f"Reproduciendo ahora: {sonando.resumen()}")
+                except ColaVaciaError as e:
+                    print(f"Aviso: {e}")
+
+            elif sub_op == "c":
+                try:
+                    proxima = cola_reproduccion.ver_frente()
+                    print(f"Próxima en la fila: {proxima.resumen()}")
+                except ColaVaciaError as e:
+                    print(f"Aviso: {e}")
+            else:
+                print("Opción inválida dentro de cola.")
                 
         else:
             # Si escriben cualquier otra cosa, aviso y el while vuelve a mostrar el menú.
