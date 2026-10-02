@@ -16,10 +16,7 @@ class Pila:
         if self.esta_vacia():
             raise PilaVaciaError("No hay elementos para deshacer.")
         # Obtenemos el dato de la cima usando nuestro metodo ver_tope
-        tope = self.ver_tope()
-        # Lo eliminamos de la lista enlazada
-        self._items.eliminar(tope)
-        return tope
+        return self._items.eliminar_primero()
 
     def ver_tope(self):
         # Miramos que hay arriba sin sacarlo
