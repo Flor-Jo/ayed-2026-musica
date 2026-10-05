@@ -8,7 +8,7 @@ Fecha de esta versión del archivo: 20-09-2026
 | --- | --- | --- | --- | --- | --- | --- |
 | E1 | 11-09-26 | Gemini | Ayuda en cuanto al diseño | nombres y datos de artistas | nada | Florencia Soffiantini, Florencia Salinas, Sebastian Aquino Frago |
 | E2 | 20-09-26 | Gemini | Código | Lógica de recursión y casos de prueba | Revisión de la lógica de recursión para la defensa final, corrección de indentación en config.py y main.py | Florencia Soffiantini, Florencia Salinas, Sebastian Aquino Frago |
-| E3 | | | | | | |
+| E3 | 04-10-26| Gemini | Codigo | | | |
 | E4 | | | | | | |
 | E5 | | | | | | |
 | E6 | | | | | | |
