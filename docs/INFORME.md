@@ -49,7 +49,10 @@ Resultado final: [8, 1]
 | Cola | encolar, desencolar, ver_frente, esta_vacia | Disciplina FIFO (First In, First Out): el primer elemento insertado por el extremo final es siempre el primero en salir por el frente. |
 
 Dónde se usa cada uno en el dominio.
-
+- **ListaEnlazada:** Base estructural de la colección `Playlist` (con límite de capacidad) y contenedor interno de los TADs Pila y Cola.
+- **Pila:** Historial de canciones consultadas (deshacer / última vista) en la Opción 7 del menú.
+- **Cola:** Cola de turnos de reproducción secuencial de canciones en la Opción 8 del menú.
+  
 ## 5. Complejidad (E4)
 
 | Operación | Tiempo | Espacio | Por qué |
