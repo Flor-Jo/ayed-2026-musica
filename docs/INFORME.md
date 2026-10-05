@@ -44,9 +44,9 @@ Resultado final: [8, 1]
 
 | TAD | Operaciones | Invariante |
 | --- | --- | --- |
-| ListaEnlazada |  |  |
-| Pila |  |  |
-| Cola |  |  |
+| ListaEnlazada | insertar_al_inicio, insertar_al_final, eliminar, buscar, tamanio, esta_vacia, ver_primero, eliminar_primero, __iter__ |Secuencia lineal encadenada por nodos contiguos; el último nodo referencia a None y tamanio equivale a la cantidad real de nodos enlazados. |
+| Pila | apilar, desapilar, ver_tope, esta_vacia | Disciplina LIFO (Last In, First Out): el elemento consultado o extraído es siempre el último que fue insertado en el tope. |
+| Cola | encolar, desencolar, ver_frente, esta_vacia | Disciplina FIFO (First In, First Out): el primer elemento insertado por el extremo final es siempre el primero en salir por el frente. |
 
 Dónde se usa cada uno en el dominio.
 
