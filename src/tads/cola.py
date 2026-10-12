@@ -2,6 +2,7 @@ from src.tads.lista_enlazada import ListaEnlazada
 from src.excepciones import ColaVaciaError
 
 
+
 class Cola:
     def __init__(self):
         # La cola guarda sus elementos internamente en nuestra lista enlazada
