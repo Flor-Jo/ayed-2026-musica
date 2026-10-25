@@ -55,9 +55,7 @@ Dónde se usa cada uno en el dominio.
   
 ## 5. Complejidad (E4)
 
-| Operación | Tiempo | Espacio | Por qué |
-| --- | --- | --- | --- |
-|  |  |  |  |
+ 
 
 Mediciones (`time.perf_counter`):
 

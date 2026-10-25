@@ -13,6 +13,12 @@ from src.excepciones import (
     ColaVaciaError,
     ColeccionLlenaError,
 )
+
+# E4: Importamos los algoritmos propios de búsqueda y ordenamiento
+# Prohibido el uso de in, .index(), sorted(), list.sort() y bisect
+from src.algoritmos.busqueda import busqueda_lineal, busqueda_binaria
+from src.algoritmos.ordenamiento import ordenar_seleccion, ordenar_insercion
+
 TEMAS = {
     "pokedex": "Pokédex",
     "recetario": "Recetario",
@@ -47,6 +53,10 @@ def main():
     # E3: Pila para historial (deshacer) y Cola para reproducción
     historial = Pila()
     cola_reproduccion = Cola()
+
+    # E4: Estado para registrar el criterio con el que se ordenó el catálogo
+    # Nos permite cumplir la regla 4.2: la binaria requiere colección ordenada
+    criterio_orden_actual = None
 
     opcion = None
     while opcion != "0":
@@ -83,6 +93,77 @@ def main():
                     print("\nError: Canción no encontrada.")
             except ValueError:
                 print("\nError: El ID debe ser un número entero.")
+
+        elif opcion == "3":
+            # OPCIÓN 3: BÚSQUEDA (E4 - Lineal y Binaria propias)
+            canciones = biblioteca.obtener_todas()
+            print("\n--- Buscar Canción ---")
+            print("1. Búsqueda lineal (por título)")
+            print("2. Búsqueda binaria (por título)")
+            metodo = input("Elegí el método (1/2): ").strip()
+
+            if metodo == "1":
+                titulo_buscado = input("Ingresá el título de la canción: ").strip()
+                encontrada = busqueda_lineal(canciones, titulo_buscado, obtener_clave=lambda c: c.titulo)
+                if encontrada:
+                    print(f"\n[Encontrada (lineal)]: {encontrada.resumen()}")
+                    historial.apilar(encontrada)
+                else:
+                    print("\nCanción no encontrada.")
+
+            elif metodo == "2":
+                titulo_buscado = input("Ingresá el título de la canción: ").strip()
+                # Regla 4.2 / Caso P11: si no está ordenado por título, reordena y notifica
+                if criterio_orden_actual != "titulo":
+                    print("Aviso: El catálogo no estaba ordenado por título. Reordenando automáticamente...")
+                    ordenar_insercion(canciones, obtener_clave=lambda c: c.titulo)
+                    criterio_orden_actual = "titulo"
+
+                encontrada = busqueda_binaria(canciones, titulo_buscado, obtener_clave=lambda c: c.titulo)
+                if encontrada:
+                    print(f"\n[Encontrada (binaria)]: {encontrada.resumen()}")
+                    historial.apilar(encontrada)
+                else:
+                    print("\nCanción no encontrada.")
+            else:
+                print("Opción de búsqueda inválida.")
+
+        elif opcion == "4":
+            # OPCIÓN 4: ORDENAMIENTO (E4 - Dos ordenamientos y dos criterios)
+            canciones = biblioteca.obtener_todas()
+            print("\n--- Ordenar Catálogo ---")
+            print("Criterio de orden:")
+            print("1. Por título")
+            print("2. Por duración")
+            crit_op = input("Elegí el criterio (1/2): ").strip()
+
+            if crit_op == "1":
+                clave_func = lambda c: c.titulo
+                nombre_criterio = "título"
+                criterio_clave = "titulo"
+            elif crit_op == "2":
+                clave_func = lambda c: getattr(c, "duracion_segundos", getattr(c, "duracion", 0))
+                nombre_criterio = "duración"
+                criterio_clave = "duracion"
+            else:
+                print("Criterio inválido.")
+                continue
+
+            print("\nAlgoritmo:")
+            print("1. Selección (no estable)")
+            print("2. Inserción (estable)")
+            alg_op = input("Elegí el algoritmo (1/2): ").strip()
+
+            if alg_op == "1":
+                ordenar_seleccion(canciones, obtener_clave=clave_func)
+                criterio_orden_actual = criterio_clave
+                print(f"\nCatálogo ordenado por {nombre_criterio} con éxito usando Selección.")
+            elif alg_op == "2":
+                ordenar_insercion(canciones, obtener_clave=clave_func)
+                criterio_orden_actual = criterio_clave
+                print(f"\nCatálogo ordenado por {nombre_criterio} con éxito usando Inserción.")
+            else:
+                print("Algoritmo inválido.")
                 
         elif opcion == "5":
             # OPCIÓN 5: RECURSIÓN (LO MAS IMPORTANTE DE ESTA ENTREGA)
@@ -199,4 +280,3 @@ def main():
 # desde la terminal, y no si otra persona u otro archivo lo importa sin querer.
 if __name__ == "__main__":
     main()
-     
