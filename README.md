@@ -46,3 +46,7 @@ ayed-2026-musica/
 │   ├── PROTOCOLO_PRUEBAS.md   # Casos de prueba manuales ejecutados (P01 a P18)
 │   └── DECLARACION_IA.md      # Registro formal de asistencia y herramientas
 └── data/                      # Archivos de datos (E5)
+
+Cómo EjecutarDesde la raíz del repositorio, utilizando Python 3.10 o superior:Bashpython -m src.main
+En entornos Windows, si el comando anterior no responde:   Bashpy -3 -m src.main
+Nota: El proyecto depende exclusivamente de la biblioteca estándar de Python (sin librerías externas ni requirements.txt).   Cronograma y Estado de EntregasLa cátedra corrige los tags versionados en Git.   TagVenceEstadoDescripción del entregablepreentrega30-ago-2026 23:59EntregadoCreación del repositorio y estructura inicial.   entrega-106-sep-2026 23:59EntregadoEsqueleto base, modelo de datos y catálogo CLI.   entrega-220-sep-2026 23:59EntregadoOrientación a objetos (clases) y operación recursiva.   entrega-304-oct-2026 23:59EntregadoImplementación de TADs propios (Lista Enlazada, Pila y Cola).   entrega-401-nov-2026 23:59EntregadoBúsquedas (lineal y binaria), ordenamientos (selección e inserción) y complejidad.   entrega-515-nov-2026 23:59PendientePersistencia en disco (archivos de texto / CSV / binarios).   entrega-622-nov-2026 23:59PendienteIntegración final, batería de pruebas de regresión y cierre.Defensa oral (reemplaza el 2do parcial): 25 y 27 de noviembre de 2026.   Contacto DocenteProf. Diego Ambrossio: diego.ambrossio@unab.edu.ar   Prof. Angel Leonardo
