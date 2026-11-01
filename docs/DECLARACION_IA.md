@@ -9,7 +9,7 @@ Fecha de esta versión del archivo: 20-09-2026
 | E1 | 11-09-26 | Gemini | Ayuda en cuanto al diseño | nombres y datos de artistas | nada | Florencia Soffiantini, Florencia Salinas, Sebastian Aquino Frago |
 | E2 | 20-09-26 | Gemini | Código | Lógica de recursión y casos de prueba | Revisión de la lógica de recursión para la defensa final, corrección de indentación en config.py y main.py | Florencia Soffiantini, Florencia Salinas, Sebastian Aquino Frago |
 | E3 | 04-10-26| Gemini | Codigo |Clase Playlist con tope, encapsulamiento en Pila y Cola |Revisión de sangrías, verificación del límite de capacidad en Playlist y corrida de pruebas del menú| Florencia Soffiantini, Florencia Salinas, Sebastian Aquino Frago |
-| E4 | | | | | | |
+E4 | 01-11-2026 | Gemini | Código, docs y análisis de complejidad | Algoritmos de búsqueda y ordenamiento propios, cálculo de complejidad y mediciones de tiempo | Verificación de estabilidad, adaptación del conversor de duración y ejecución de casos de prueba P15-P18 en CLI | Florencia Soffiantini, Florencia Salinas, Sebastian Aquino Frago |
 | E5 | | | | | | |
 | E6 | | | | | | |
 
