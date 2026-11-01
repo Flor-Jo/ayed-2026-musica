@@ -46,6 +46,8 @@ ayed-2026-musica/
 │   ├── PROTOCOLO_PRUEBAS.md   # Casos de prueba manuales ejecutados (P01 a P18)
 │   └── DECLARACION_IA.md      # Registro formal de asistencia y herramientas
 └── data/                      # Archivos de datos (E5)
+```
+
 
 ## Cómo Ejecutar
 Desde la raíz del repositorio, utilizando Python 3.10 o superior:
