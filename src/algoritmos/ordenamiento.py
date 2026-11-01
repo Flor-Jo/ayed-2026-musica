@@ -1,66 +1,42 @@
 """
 Módulo de algoritmos de ordenamiento propios para la Entrega 4.
-Prohibido el uso de sorted() y list.sort().
+Regla estricta: Prohibido el uso de sorted() y list.sort().
 """
 
 def ordenar_seleccion(coleccion, obtener_clave):
     """
-    Ordenamiento por Selección (Selection Sort).
-    Modifica la lista in-place buscando en cada iteración el elemento mínimo del resto.
-    
-    Estabilidad: NO es estable (puede cambiar el orden relativo de elementos con claves iguales al intercambiar posiciones no contiguas).
-    Complejidad temporal: O(n²) en el mejor, peor y caso promedio (siempre recorre los dos bucles).
-    Complejidad espacial: O(1).
+    Ordenamiento por selección (Selection Sort).
+    Criterio de estabilidad: NO ESTABLE.
+    Busca repetidamente el menor elemento del resto de la lista y lo ubica al inicio.
+    Complejidad temporal: O(n^2) en mejor, promedio y peor caso.
+    Espacio auxiliar: O(1) (in-place).
     """
     n = len(coleccion)
     for i in range(n - 1):
         pos_min = i
         for j in range(i + 1, n):
-            val_j = obtener_clave(coleccion[j])
-            val_min = obtener_clave(coleccion[pos_min])
-            
-            # Normalización para texto si corresponde
-            if isinstance(val_j, str) and isinstance(val_min, str):
-                if val_j.strip().lower() < val_min.strip().lower():
-                    pos_min = j
-            else:
-                if val_j < val_min:
-                    pos_min = j
-                    
-        # Intercambio
-        coleccion[i], coleccion[pos_min] = coleccion[pos_min], coleccion[i]
-        
+            if obtener_clave(coleccion[j]) < obtener_clave(coleccion[pos_min]):
+                pos_min = j
+        if pos_min != i:
+            coleccion[i], coleccion[pos_min] = coleccion[pos_min], coleccion[i]
     return coleccion
 
 
 def ordenar_insercion(coleccion, obtener_clave):
     """
-    Ordenamiento por Inserción (Insertion Sort).
-    Modifica la lista in-place insertando cada elemento en su lugar correspondiente entre los ya ordenados.
-    
-    Estabilidad: SÍ es estable (conserva el orden relativo previo de elementos con claves idénticas).
-    Complejidad temporal: O(n) en el mejor caso (ya ordenado), O(n²) en el caso promedio y peor caso.
-    Complejidad espacial: O(1).
+    Ordenamiento por inserción (Insertion Sort).
+    Criterio de estabilidad: ESTABLE (mantiene el orden relativo de claves iguales).
+    Inserta cada elemento desplazando los elementos mayores hacia la derecha.
+    Complejidad temporal: O(n) mejor caso, O(n^2) peor y promedio.
+    Espacio auxiliar: O(1) (in-place).
     """
     n = len(coleccion)
     for i in range(1, n):
         actual = coleccion[i]
-        val_actual = obtener_clave(actual)
-        if isinstance(val_actual, str):
-            val_actual = val_actual.strip().lower()
-            
+        clave_actual = obtener_clave(actual)
         j = i - 1
-        while j >= 0:
-            val_j = obtener_clave(coleccion[j])
-            if isinstance(val_j, str):
-                val_j = val_j.strip().lower()
-                
-            if val_j > val_actual:
-                coleccion[j + 1] = coleccion[j]
-                j -= 1
-            else:
-                break
-                
+        while j >= 0 and obtener_clave(coleccion[j]) > clave_actual:
+            coleccion[j + 1] = coleccion[j]
+            j -= 1
         coleccion[j + 1] = actual
-        
     return coleccion

@@ -25,6 +25,16 @@ TEMAS = {
     "musica": "Biblioteca musical",
 }
 
+def duracion_a_segundos(duracion_str: str) -> int:
+    """Convierte 'mm:ss' a segundos totales enteros para ordenar correctamente."""
+    try:
+        partes = duracion_str.strip().split(":")
+        if len(partes) == 2:
+            return int(partes[0]) * 60 + int(partes[1])
+        return int(duracion_str)
+    except Exception:
+        return 0
+
 def mostrar_menu():
     # Imprime el menu principal en la consola.
     nombre = TEMAS.get(TEMA, TEMA or "(sin tema)")
@@ -142,7 +152,7 @@ def main():
                 nombre_criterio = "título"
                 criterio_clave = "titulo"
             elif crit_op == "2":
-                clave_func = lambda c: getattr(c, "duracion_segundos", getattr(c, "duracion", 0))
+                clave_func = lambda c: duracion_a_segundos(c.duracion)
                 nombre_criterio = "duración"
                 criterio_clave = "duracion"
             else:
