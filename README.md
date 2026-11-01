@@ -1,45 +1,48 @@
-# TP integrador — AyED C2 2026
+# TP Integrador — AyED C2 2026
 
-Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src/` ni de `docs/`.
+Repositorio del grupo para el Trabajo Práctico Integrador de Algoritmos y Estructuras de Datos (Cátedra Ambrossio - Bianco, Universidad Nacional Guillermo Brown).
 
-### Integrantes
+---
+
+## Integrantes
 
 | Nombre | Mail | GitHub |
 | --- | --- | --- |
-| Florencia Lujan Salinas | Florsalinas25@live.com | [@Flor-Jo](https://github.com/Flor-Jo) |
-| Sebastian Aquino Frago | sebas.aquinofrago@gmail.com | @Sebas_AF |
-| Florencia Soffiantini | fsoffiantini@gmail.com | @fsoffian |
+| Florencia Luján Salinas | Florsalinas25@live.com | [@Flor-Jo](https://github.com/Flor-Jo) |
+| Sebastián Aquino Frago | sebas.aquinofrago@gmail.com | [@Sebas_AF](https://github.com/Sebas_AF) |
+| Florencia Soffiantini | fsoffiantini@gmail.com | [@fsoffian](https://github.com/fsoffian) |
 
-**Tema elegido:** Biblioteca musical
+---
 
-## Cómo ejecutar
+## Tema Elegido: Biblioteca Musical
 
-Desde la raíz del repo, con Python 3.10 o superior:
+Modelado de un catálogo de temas de Pop de los 2000s orientado a objetos, con persistencia, TADs propios, funciones recursivas y algoritmos de búsqueda y ordenamiento manuales[cite: 1, 4].
+
+---
+
+## Estructura del Proyecto
 
 ```text
-python -m src.main
-```
-
-En Windows, si `python` no anda: `py -3 -m src.main`.
-
-Solo biblioteca estándar. No hay `requirements.txt` a propósito.
-
-## Entregas
-
-Cada vencimiento se marca con un tag. Ver `GIT.md`.
-
-| Tag | Vence |
-| --- | --- |
-| `preentrega` (opcional, solo repo) | domingo 30-ago-2026 23:59 |
-| `entrega-1` | domingo 06-sep-2026 23:59 |
-| `entrega-2` | domingo 20-sep-2026 23:59 |
-| `entrega-3` | domingo 04-oct-2026 23:59 |
-| `entrega-4` | domingo 01-nov-2026 23:59 |
-| `entrega-5` | domingo 15-nov-2026 23:59 |
-| `entrega-6` | domingo 22-nov-2026 23:59 |
-
-Defensa oral (reemplaza el 2do parcial): 25 y 27-nov-2026.
-
-La cátedra corrige el **tag**, no el último commit suelto de `main`.
-
-El grupo se avisa por mail a diego.ambrossio@unab.edu.ar **y** angel.bianco@unab.edu.ar. Ver `GIT.md`.
+ayed-2026-musica/
+├── README.md                  # Presentación general y estado de entregas
+├── src/
+│   ├── config.py              # Configuración general y tema activo
+│   ├── main.py                # Interfaz de línea de comandos (CLI) y menú
+│   ├── excepciones.py         # Excepciones propias del dominio y TADs
+│   ├── dominio/
+│   │   ├── cancion.py         # Clase entidad Cancion
+│   │   ├── biblioteca.py      # Gestor del catálogo y lógica recursiva (E2)
+│   │   └── playlist.py        # Colección con tope basada en ListaEnlazada (E3)
+│   ├── tads/
+│   │   ├── nodo.py            # Nodo de enlace simple
+│   │   ├── lista_enlazada.py  # TAD Lista Enlazada con iterador
+│   │   ├── pila.py            # TAD Pila (LIFO) para historial de consultas
+│   │   └── cola.py            # TAD Cola (FIFO) para turnos de reproducción
+│   └── algoritmos/            # Algoritmos propios implementados a mano (E4)
+│       ├── busqueda.py        # Búsqueda lineal y búsqueda binaria
+│       └── ordenamiento.py    # Selección (no estable) e inserción (estable)
+├── docs/
+│   ├── INFORME.md             # Informe técnico, justificación y complejidades (§5)
+│   ├── PROTOCOLO_PRUEBAS.md   # Casos de prueba manuales ejecutados (P01 a P18)
+│   └── DECLARACION_IA.md      # Registro formal de asistencia y herramientas
+└── data/                      # Archivos de datos (E5)
