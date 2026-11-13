@@ -1,4 +1,5 @@
 # Importamos la variable TEMA de config.py para saber que catalogo cargar.
+import os
 from src.config import TEMA
 
 # IMPORTANTE: Aca importamos la clase Biblioteca que armamos en la carpeta dominio.
@@ -285,6 +286,102 @@ def main():
         else:
             # Si escriben cualquier otra cosa, aviso y el while vuelve a mostrar el menú.
             print("Opción inválida.")
+        
+        elif opcion == "9":
+            # OPCIÓN 9: PERSISTENCIA EN TEXTO Y BINARIO + ABM PERSISTENTE (E5)
+            ruta_txt = os.path.join("data", "canciones.txt")
+            ruta_bin = os.path.join("data", "canciones.bin")
+
+            print("\n--- Guardar / Cargar Archivos y ABM Persistente (E5) ---")
+            print("a. Guardar catálogo en texto (.txt)")
+            print("b. Cargar catálogo desde texto (.txt)")
+            print("c. Guardar catálogo en binario (.bin)")
+            print("d. Cargar catálogo desde binario (.bin)")
+            print("e. Alta de canción (persistente en .txt y .bin)")
+            print("f. Baja de canción (persistente en .txt y .bin)")
+            print("g. Modificar canción (acceso directo seek en .bin + .txt)")
+            sub_op = input("Elige una opción (a-g): ").strip().lower()
+
+            try:
+                if sub_op == "a":
+                    biblioteca.guardar_en_texto(ruta_txt)
+                    print(f"Catálogo guardado con éxito en '{ruta_txt}'.")
+
+                elif sub_op == "b":
+                    ruta_in = input(f"Ruta del archivo .txt [Enter para '{ruta_txt}']: ").strip() or ruta_txt
+                    biblioteca.cargar_desde_texto(ruta_in)
+                    criterio_orden_actual = None
+                    print(f"Catálogo cargado desde '{ruta_in}' ({len(biblioteca.obtener_todas())} canciones).")
+
+                elif sub_op == "c":
+                    biblioteca.guardar_en_binario(ruta_bin)
+                    print(f"Catálogo guardado con éxito en '{ruta_bin}' (registros fijos de 84 bytes).")
+
+                elif sub_op == "d":
+                    ruta_in = input(f"Ruta del archivo .bin [Enter para '{ruta_bin}']: ").strip() or ruta_bin
+                    biblioteca.cargar_desde_binario(ruta_in)
+                    criterio_orden_actual = None
+                    print(f"Catálogo cargado desde '{ruta_in}' ({len(biblioteca.obtener_todas())} canciones).")
+
+                elif sub_op == "e":
+                    id_c = int(input("Nuevo ID (entero): "))
+                    titulo = input("Título: ").strip()
+                    artista = input("Artista: ").strip()
+                    anio = int(input("Año: "))
+                    duracion = input("Duración (ej. 03:45): ").strip()
+
+                    nueva = Cancion(id_c, titulo, artista, anio, duracion)
+                    biblioteca.agregar_cancion(nueva)
+                    criterio_orden_actual = None
+
+                    # Persistimos el alta en disco
+                    biblioteca.guardar_en_texto(ruta_txt)
+                    biblioteca.alta_en_binario(ruta_bin, nueva)
+                    print(f"Canción '{titulo}' agregada y persistida en disco.")
+
+                elif sub_op == "f":
+                    id_c = int(input("ID de la canción a dar de baja: "))
+                    pos, eliminada = biblioteca.eliminar_cancion(id_c)
+                    criterio_orden_actual = None
+
+                    # Persistimos la baja en disco
+                    biblioteca.guardar_en_texto(ruta_txt)
+                    if os.path.exists(ruta_bin):
+                        biblioteca.baja_en_binario(ruta_bin, pos)
+                    print(f"Canción '{eliminada.titulo}' eliminada y cambios persistidos.")
+
+                elif sub_op == "g":
+                    id_c = int(input("ID de la canción a modificar: "))
+                    nuevo_tit = input("Nuevo título: ").strip()
+                    nuevo_art = input("Nuevo artista: ").strip()
+                    nuevo_anio = int(input("Nuevo año: "))
+                    nueva_dur = input("Nueva duración (ej. 03:45): ").strip()
+
+                    pos, actualizada = biblioteca.modificar_cancion(
+                        id_c, nuevo_tit, nuevo_art, nuevo_anio, nueva_dur
+                    )
+                    criterio_orden_actual = None
+
+                    # Persistimos en .txt y actualizamos por posición con seek() en .bin
+                    biblioteca.guardar_en_texto(ruta_txt)
+                    if os.path.exists(ruta_bin):
+                        biblioteca.actualizar_en_binario_por_posicion(ruta_bin, pos, actualizada)
+                        print(f"Registro en posición {pos} pisado con seek() en '{ruta_bin}' y actualizado en '{ruta_txt}'.")
+                    else:
+                        biblioteca.guardar_en_binario(ruta_bin)
+                        print(f"Canción actualizada y guardada en '{ruta_txt}' y '{ruta_bin}'.")
+
+                else:
+                    print("Subopción inválida dentro de archivos.")
+
+            except ArchivoInvalidoError as e:
+                print(f"\nError de archivo inválido: {e}")
+            except ItemNoEncontradoError as e:
+                print(f"\nError: {e}")
+            except ValueError as e:
+                print(f"\nError de datos: {e}")
+            except IndexError as e:
+                print(f"\nError de posición en archivo binario: {e}")
 
 # Esta linea es para que todo esto solo arranque si ejecuto este archivo directamente 
 # desde la terminal, y no si otra persona u otro archivo lo importa sin querer.
