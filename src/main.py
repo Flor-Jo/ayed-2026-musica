@@ -283,9 +283,7 @@ def main():
             else:
                 print("Opción inválida dentro de cola.")
                 
-        else:
-            # Si escriben cualquier otra cosa, aviso y el while vuelve a mostrar el menú.
-            print("Opción inválida.")
+
         
         elif opcion == "9":
             # OPCIÓN 9: PERSISTENCIA EN TEXTO Y BINARIO + ABM PERSISTENTE (E5)
@@ -373,7 +371,10 @@ def main():
 
                 else:
                     print("Subopción inválida dentro de archivos.")
-
+        else:
+            # Si escriben cualquier otra cosa, aviso y el while vuelve a mostrar el menú.
+            print("Opción inválida.")
+            
             except ArchivoInvalidoError as e:
                 print(f"\nError de archivo inválido: {e}")
             except ItemNoEncontradoError as e:
