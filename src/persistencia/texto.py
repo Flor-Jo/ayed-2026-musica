@@ -2,14 +2,13 @@ import os
 from src.dominio.cancion import Cancion
 from src.excepciones import ArchivoInvalidoError
 
-SEPARADOR = "|"
-
+SEPARADOR = ","
 
 def guardar_texto(ruta: str, canciones: list):
     """Guarda el catálogo de canciones en un archivo de texto plano delimitado por '|'."""
     os.makedirs(os.path.dirname(ruta), exist_ok=True)
     with open(ruta, "w", encoding="utf-8") as archivo:
-        archivo.write("id|titulo|artista|anio|duracion\n")
+        archivo.write("id,titulo,artista,anio,duracion\n")
         for c in canciones:
             linea = f"{c.id}{SEPARADOR}{c.titulo}{SEPARADOR}{c.artista}{SEPARADOR}{c.anio}{SEPARADOR}{c.duracion}\n"
             archivo.write(linea)
@@ -28,7 +27,7 @@ def cargar_texto(ruta: str) -> list:
         raise ArchivoInvalidoError("El archivo de texto está vacío.")
 
     encabezado = lineas[0].strip()
-    if encabezado != "id|titulo|artista|anio|duracion":
+    if encabezado != "id,titulo,artista,anio,duracion":
         raise ArchivoInvalidoError("Encabezado inválido o archivo corrupto.")
 
     for num_linea, linea in enumerate(lineas[1:], start=2):

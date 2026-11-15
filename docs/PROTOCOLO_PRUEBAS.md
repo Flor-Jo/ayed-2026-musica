@@ -17,6 +17,6 @@
 | P16 | E4 | Búsqueda lineal de un nombre que no existe | "CancionInexistente" | "Canción no encontrada", sin traceback | pasa | Manejo sin excepción |
 | P17 | E4 | Búsqueda binaria con catálogo desordenado | Catálogo sin ordenar | avisa o reordena; no da un falso hit | pasa | Reordena por título automáticamente y avisa |
 | P18 | E4 | Ordenar por un criterio y después por otro | 1) Título 2) Duración | el orden cambia correctamente | pasa | Selección e inserción probados |
-| P19 | E5 | Guardar CSV, salir, volver a entrar | - | los datos siguen | no corrido | Previsto para E5 |
-| P20 | E5 | Guardar binario y modificar un registro por id | - | al recargar, ese campo cambió | no corrido | Previsto para E5 |
-| P21 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido | no corrido | Previsto para E5 | 
+| P19 | E5 | Guardar .txt, salir, volver a entrar | Opción 9a -> 0 -> 1 | los datos siguen | pasa | Persistencia en data/canciones.txt verificada |
+| P20 | E5 | Guardar binario y modificar un registro por id | Opción 9c -> 9g -> 9d | al recargar, ese campo cambió | pasa | Modificación por posición con seek(9 + pos*84) ok |
+| P21 | E5 | Abrir un binario truncado o con magia mala | README.md / archivo inválido | excepción de archivo inválido | pasa | ArchivoInvalidoError capturado sin traceback || 

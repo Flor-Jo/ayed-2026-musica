@@ -18,7 +18,7 @@ class Biblioteca:
     def __init__(self):
         self.canciones = []
         self.versiones_map = {
-            3: [8],
+            2: [8],
             8: [1],
         }
         self.cargar_datos_iniciales()
@@ -114,7 +114,5 @@ class Biblioteca:
     def alta_en_binario(self, ruta: str, cancion: Cancion):
         alta_binario(ruta, cancion)
 
-    def baja_en_binario(self, ruta: str, posicion: int):
-        baja_binario(ruta, posicion)
     def baja_en_binario(self, ruta: str, posicion: int):
         baja_binario(ruta, posicion)

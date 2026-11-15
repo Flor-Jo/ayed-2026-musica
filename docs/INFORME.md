@@ -99,9 +99,14 @@ Medición realizada sobre el catálogo original en memoria ($n = 8$) y sobre una
 
 ## 6. Persistencia (E5)
 
-- Layout del registro binario (campos, `struct`, anchos):
-- Header:
-- Cómo se actualiza un registro por posición:
+- **Layout del registro binario (`FORMATO_REGISTRO = "<I40s30sH8s"`):** Cada registro es de longitud fija y ocupa **84 bytes** en orden *little-endian* (`<`):
+  - `id`: `I` (entero sin signo de 4 bytes).
+  - `titulo`: `40s` (cadena UTF-8 de 40 bytes, recortada o rellenada con `\x00`).
+  - `artista`: `30s` (cadena UTF-8 de 30 bytes, con relleno `\x00`).
+  - `anio`: `H` (entero corto sin signo de 2 bytes).
+  - `duracion`: `8s` (cadena UTF-8 de 8 bytes para formato `mm:ss`, con relleno `\x00`).
+- **Header (`FORMATO_HEADER = "<4s1sI"`):** Ocupa **9 bytes** al inicio del archivo: magia `b"AYED"` (4 B), tema `b"M"` (1 B) y cantidad de registros (4 B). Al cargar se valida que el tamaño total del archivo coincida con `9 + cantidad * 84` bytes; si no, lanza `ArchivoInvalidoError`.
+- **Cómo se actualiza un registro por posición:** `actualizar_registro(ruta, posicion, cancion)` abre el archivo en modo `"r+b"`, valida el header y el rango de la posición, calcula el byte exacto con `offset = 9 + (posicion * 84)`, salta directo con `f.seek(offset)` (acceso directo $O(1)$) y pisa únicamente esos 84 bytes sin reescribir el resto del archivo. El alta agrega al final con `f.seek(0, 2)` y actualiza el contador del header en el byte 0; la baja quita el registro en memoria, trunca y reescribe el archivo.
 
 ## 7. Reparto de trabajo (E6)
  
