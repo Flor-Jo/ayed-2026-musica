@@ -116,3 +116,16 @@ class Biblioteca:
 
     def baja_en_binario(self, ruta: str, posicion: int):
         baja_binario(ruta, posicion)
+
+    def cargar_datos_iniciales(self):
+    """Si existe data/canciones.txt con canciones lo carga; si no, usa CATALOGO_POP_2000S."""
+    ruta_txt = Path(__file__).resolve().parents[2] / "data" / "canciones.txt"
+    if ruta_txt.exists():
+        try:
+            cargadas = cargar_texto(str(ruta_txt))
+            if cargadas:
+                self.canciones = cargadas
+                return
+        except Exception:
+            pass
+    self.cargar_catalogo()
