@@ -167,34 +167,47 @@ def main():
                 print("\nError: El ID debe ser un número entero.")
 
         elif opcion == "6":
-            print(f"\n--- {playlist.nombre} ({playlist.cantidad()}/{playlist.capacidad_maxima}) ---")
-            print("a. Ver canciones en la playlist")
-            print("b. Agregar canción a la playlist")
-            sub_op = input("Elige una opción (a/b): ").strip().lower()
-
-            if sub_op == "a":
-                if playlist.esta_vacia():
-                    print("La playlist está vacía.")
-                else:
-                    print("\nCanciones en tu playlist:")
-                    for c in playlist:
-                        print(f" - {c.resumen()}")
-
-            elif sub_op == "b":
-                try:
-                    id_c = int(input("ID de canción a agregar a la playlist: "))
-                    c = biblioteca.buscar_por_id(id_c)
-                    if not c:
-                        print("Error: La canción no existe en el catálogo.")
+                    print(f"\n--- {playlist.nombre} ({playlist.cantidad()}/{playlist.capacidad_maxima}) ---")
+                    print("a. Ver canciones en la playlist")
+                    print("b. Agregar canción a la playlist")
+                    print("c. Quitar canción de la playlist (baja)")
+                    sub_op = input("Elige una opción (a/b/c): ").strip().lower()
+        
+                    if sub_op == "a":
+                        if playlist.esta_vacia():
+                            print("La playlist está vacía.")
+                        else:
+                            print("\nCanciones en tu playlist:")
+                            for c in playlist:
+                                print(f" - {c.resumen()}")
+        
+                    elif sub_op == "b":
+                        try:
+                            id_c = int(input("ID de canción a agregar a la playlist: "))
+                            c = biblioteca.buscar_por_id(id_c)
+                            if not c:
+                                print("Error: La canción no existe en el catálogo.")
+                            else:
+                                playlist.agregar_cancion(c)
+                                print(f"'{c.titulo}' agregada con éxito a la playlist.")
+                        except ValueError:
+                            print("Error: El ID debe ser un número entero.")
+                        except ColeccionLlenaError as e:
+                            print(f"No se pudo agregar: {e}")
+        
+                    elif sub_op == "c":
+                        try:
+                            id_c = int(input("ID de canción a quitar de la playlist: "))
+                            c = biblioteca.buscar_por_id(id_c)
+                            if not c:
+                                print("Error: La canción no existe.")
+                            else:
+                                playlist.eliminar_cancion(c)
+                                print(f"'{c.titulo}' quitada de la playlist.")
+                        except Exception as e:
+                            print(f"No se pudo quitar: {e}")
                     else:
-                        playlist.agregar_cancion(c)
-                        print(f"'{c.titulo}' agregada con éxito a la playlist.")
-                except ValueError:
-                    print("Error: El ID debe ser un número entero.")
-                except ColeccionLlenaError as e:
-                    print(f"No se pudo agregar: {e}")
-            else:
-                print("Opción inválida dentro de playlist.")
+                        print("Opción inválida dentro de playlist.")
 
         elif opcion == "7":
             print("\n--- Historial de navegación (Pila - LIFO) ---")
