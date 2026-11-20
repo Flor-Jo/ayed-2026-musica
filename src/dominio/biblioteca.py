@@ -13,7 +13,7 @@ from src.persistencia.binario import (
 
 
 class Biblioteca:
-    """Clase gestora del dominio Biblioteca Musical (E1-E5)."""
+    """Clase gestora del dominio Biblioteca Musical (E1-E6)."""
 
     def _init_(self):
         self.canciones = []
@@ -23,7 +23,6 @@ class Biblioteca:
         }
         self.cargar_datos_iniciales()
 
-    # <--- ACÁ VA (justo debajo de _init_ y antes de cargar_catalogo)
     def cargar_datos_iniciales(self):
         """Si existe data/canciones.txt con canciones lo carga; si no, usa CATALOGO_POP_2000S."""
         ruta_txt = Path(_file_).resolve().parents[2] / "data" / "canciones.txt"
