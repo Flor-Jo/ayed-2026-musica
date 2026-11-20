@@ -16,8 +16,35 @@ Por último, los valores de cada campo se definieron con tipos inmutables como e
 
 Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacionan catálogo, colección principal, pila y cola.
 
+```## 2. Modelo
+
+- **Ítem del catálogo (`Cancion` en `src/dominio/cancion.py`):** Modela cada pista musical del sistema mediante los atributos `id` (`int`), `titulo` (`str`), `artista` (`str`), `anio` (`int`) y `duracion` (`str` en formato `mm:ss`), junto con `resumen()` para su salida formateada en consola.
+- **Mutabilidad e inmutabilidad (E1):**
+  - *Mutables:* La instancia de `Cancion` (sus atributos `titulo`, `artista`, `anio` y `duracion` pueden actualizarse durante el ABM), la colección del catálogo (`Biblioteca.canciones`), la colección principal (`Playlist`), el historial (`Pila`) y los turnos de reproducción (`Cola`), que cambian de estado ante inserciones, eliminaciones y ordenamientos.
+  - *Inmutables:* Los valores primitivos de cada campo (`int` y `str` en Python), el identificador `id` como clave única de referencia, la constante inicial `CATALOGO_POP_2000S` definida en `src/config.py` y las firmas de encabezado binario (`MAGIA_ESPERADA = b"AYED"`, `TEMA_ESPERADO = b"M"`).
+- **Relación entre catálogo, colección principal, pila y cola:**
+  - **`Biblioteca` (Catálogo):** Administra el universo completo de objetos `Cancion` cargados en memoria o persistidos en `.txt`/`.bin`.
+  - **`Playlist` (Colección principal):** Mantiene una selección acotada (capacidad máxima 5) de referencias a canciones existentes en `Biblioteca`, almacenadas sobre una `ListaEnlazada` propia.
+  - **`Pila` (Historial):** Registra bajo disciplina LIFO las canciones consultadas en detalle o encontradas en búsquedas para permitir deshacer la última visita.
+  - **`Cola` (Reproducción):** Gestiona bajo disciplina FIFO los turnos pendientes de reproducción de canciones tomadas del catálogo.
+
 ```text
-(pueden pegar un diagrama ASCII o una lista de clases)
++-----------------------------------+
+|            Biblioteca             |
+| (Catálogo general de canciones)   |
++-----------------------------------+
+                 | 1..*
+                 v
++-----------------------------------+
+|              Cancion              |
+| (id, titulo, artista, anio, dur.) |
++-----------------------------------+
+     ^            ^            ^
+     | 0..5       | LIFO       | FIFO
++----------+ +----------+ +----------+
+| Playlist | |   Pila   | |   Cola   |
+| (TAD LE) | |(Historial| | (Turnos) |
++----------+ +----------+ +----------+
 ```
 
 ## Recursión (E2)
