@@ -18,6 +18,10 @@ class Playlist:
             )
         self._canciones.insertar_al_final(cancion)
 
+    def eliminar_cancion(self, cancion):
+        """Elimina una canción de la playlist usando la ListaEnlazada."""
+        self._canciones.eliminar(cancion)
+
     def cantidad(self) -> int:
         return self._canciones.tamanio()
 
