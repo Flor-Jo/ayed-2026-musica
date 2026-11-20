@@ -1,6 +1,5 @@
 from pathlib import Path
 from src.dominio.cancion import Cancion
-from src.config import CATALOGO_POP_2000S
 from src.excepciones import ItemNoEncontradoError
 from src.persistencia.texto import guardar_texto, cargar_texto
 from src.persistencia.binario import (
@@ -13,8 +12,6 @@ from src.persistencia.binario import (
 
 
 class Biblioteca:
-    """Clase gestora del dominio Biblioteca Musical (E1-E6)."""
-
     def _init_(self):
         self.canciones = []
         self.versiones_map = {
@@ -24,7 +21,6 @@ class Biblioteca:
         self.cargar_datos_iniciales()
 
     def cargar_datos_iniciales(self):
-        """Si existe data/canciones.txt con canciones lo carga; si no, usa CATALOGO_POP_2000S."""
         ruta_txt = Path(_file_).resolve().parents[2] / "data" / "canciones.txt"
         if ruta_txt.exists():
             try:
@@ -37,23 +33,25 @@ class Biblioteca:
         self.cargar_catalogo()
 
     def cargar_catalogo(self):
-        """Carga inicial desde la constante de config.py (E1/E2)."""
-        self.canciones = []
-        for item in CATALOGO_POP_2000S:
-            cancion = Cancion(
-                id_cancion=item["id"],
-                titulo=item["titulo"],
-                artista=item["artista"],
-                anio=item["anio"],
-                duracion=item["duracion"],
-            )
-            self.canciones.append(cancion)
+        self.canciones = [
+            Cancion(1, "Toxic", "Britney Spears", 2003, "03:18"),
+            Cancion(2, "Bad Romance", "Lady Gaga", 2009, "04:54"),
+            Cancion(3, "Umbrella", "Rihanna", 2007, "04:35"),
+            Cancion(4, "Crazy in Love", "Beyonce", 2003, "03:56"),
+            Cancion(5, "Hips Don't Lie", "Shakira", 2005, "03:38"),
+            Cancion(6, "Poker Face", "Lady Gaga", 2008, "03:57"),
+            Cancion(7, "Complicated", "Avril Lavigne", 2002, "04:04"),
+            Cancion(8, "Umbrella (Acoustic)", "Rihanna", 2008, "04:12"),
+        ]
 
     def obtener_todas(self) -> list:
+        if not hasattr(self, "canciones"):
+            self.canciones = []
+            self.cargar_catalogo()
         return self.canciones
 
     def buscar_por_id(self, id_cancion: int):
-        for cancion in self.canciones:
+        for cancion in self.obtener_todas():
             if cancion.id == id_cancion:
                 return cancion
         return None
@@ -73,12 +71,13 @@ class Biblioteca:
     def agregar_cancion(self, nueva_cancion: Cancion):
         if self.buscar_por_id(nueva_cancion.id) is not None:
             raise ValueError(f"Ya existe una canción con el ID {nueva_cancion.id}.")
-        self.canciones.append(nueva_cancion)
+        self.obtener_todas().append(nueva_cancion)
 
     def eliminar_cancion(self, id_cancion: int) -> tuple[int, Cancion]:
-        for idx, c in enumerate(self.canciones):
+        lista = self.obtener_todas()
+        for idx, c in enumerate(lista):
             if c.id == id_cancion:
-                return idx, self.canciones.pop(idx)
+                return idx, lista.pop(idx)
         raise ItemNoEncontradoError(f"No se encontró canción con ID {id_cancion}.")
 
     def modificar_cancion(
@@ -89,7 +88,7 @@ class Biblioteca:
         nuevo_anio: int,
         nueva_duracion: str,
     ) -> tuple[int, Cancion]:
-        for idx, c in enumerate(self.canciones):
+        for idx, c in enumerate(self.obtener_todas()):
             if c.id == id_cancion:
                 c.titulo = nuevo_titulo
                 c.artista = nuevo_artista
@@ -99,13 +98,13 @@ class Biblioteca:
         raise ItemNoEncontradoError(f"No se encontró canción con ID {id_cancion}.")
 
     def guardar_en_texto(self, ruta: str):
-        guardar_texto(ruta, self.canciones)
+        guardar_texto(ruta, self.obtener_todas())
 
     def cargar_desde_texto(self, ruta: str):
         self.canciones = cargar_texto(ruta)
 
     def guardar_en_binario(self, ruta: str):
-        guardar_binario(ruta, self.canciones)
+        guardar_binario(ruta, self.obtener_todas())
 
     def cargar_desde_binario(self, ruta: str):
         self.canciones = list(cargar_binario(ruta))
