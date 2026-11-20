@@ -56,7 +56,7 @@ Desde la raíz del repositorio, utilizando Python 3.10 o superior:
 
 En entornos Windows, si el comando anterior no responde:
 
-| Bashpy -3 -m src.main |
+| Bash py -3 -m src.main |
 
 **Nota: El proyecto depende exclusivamente de la biblioteca estándar de Python (sin librerías externas ni requirements.txt).**
 
