@@ -15,6 +15,7 @@ class Biblioteca:
     def _init_(self):
         self.canciones = []
         self.versiones_map = {
+            2: [8],
             3: [8],
             8: [1],
         }
@@ -57,6 +58,8 @@ class Biblioteca:
         return None
 
     def obtener_versiones_directas(self, id_cancion: int) -> list:
+        if not hasattr(self, "versiones_map"):
+            self.versiones_map = {2: [8], 3: [8], 8: [1]}
         return self.versiones_map.get(id_cancion, [])
 
     def obtener_todas_las_versiones(self, id_cancion: int) -> list:
