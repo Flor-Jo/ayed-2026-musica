@@ -15,21 +15,24 @@ from src.persistencia.binario import (
 class Biblioteca:
     """Clase gestora del dominio Biblioteca Musical (E1-E5)."""
 
-    def __init__(self):
+    def _init_(self):
         self.canciones = []
         self.versiones_map = {
-            2: [8],
+            3: [8],
             8: [1],
         }
         self.cargar_datos_iniciales()
 
+    # <--- ACÁ VA (justo debajo de _init_ y antes de cargar_catalogo)
     def cargar_datos_iniciales(self):
-        """Si existe data/canciones.txt lo carga al arrancar; si no, usa CATALOGO_POP_2000S."""
-        ruta_txt = Path(__file__).resolve().parents[2] / "data" / "canciones.txt"
+        """Si existe data/canciones.txt con canciones lo carga; si no, usa CATALOGO_POP_2000S."""
+        ruta_txt = Path(_file_).resolve().parents[2] / "data" / "canciones.txt"
         if ruta_txt.exists():
             try:
-                self.canciones = cargar_texto(str(ruta_txt))
-                return
+                cargadas = cargar_texto(str(ruta_txt))
+                if cargadas:
+                    self.canciones = cargadas
+                    return
             except Exception:
                 pass
         self.cargar_catalogo()
@@ -116,16 +119,3 @@ class Biblioteca:
 
     def baja_en_binario(self, ruta: str, posicion: int):
         baja_binario(ruta, posicion)
-
-    def cargar_datos_iniciales(self):
-    """Si existe data/canciones.txt con canciones lo carga; si no, usa CATALOGO_POP_2000S."""
-    ruta_txt = Path(__file__).resolve().parents[2] / "data" / "canciones.txt"
-    if ruta_txt.exists():
-        try:
-            cargadas = cargar_texto(str(ruta_txt))
-            if cargadas:
-                self.canciones = cargadas
-                return
-        except Exception:
-            pass
-    self.cargar_catalogo()
