@@ -5,7 +5,7 @@ from src.excepciones import ArchivoInvalidoError
 SEPARADOR = ","
 
 def guardar_texto(ruta: str, canciones: list):
-    """Guarda el catálogo de canciones en un archivo de texto plano delimitado por '|'."""
+    """Guarda el catálogo de canciones en un archivo de texto plano delimitado por ','."""
     os.makedirs(os.path.dirname(ruta), exist_ok=True)
     with open(ruta, "w", encoding="utf-8") as archivo:
         archivo.write("id,titulo,artista,anio,duracion\n")

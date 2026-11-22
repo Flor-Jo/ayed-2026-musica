@@ -1,1 +1,9 @@
 id,titulo,artista,anio,duracion
+1,Toxic,Britney Spears,2003,3:18
+2,Bad Romance,Lady Gaga,2009,4:54
+3,Hips Don't Lie,Shakira feat. Wyclef Jean,2006,3:38
+4,Umbrella,Rihanna feat. JAY-Z,2007,4:35
+5,Can't Get You Out of My Head,Kylie Minogue,2001,3:50
+6,Bye Bye Bye,*NSYNC,2000,3:19
+7,Crazy in Love,Beyoncé feat. JAY-Z,2003,3:56
+8,Poker Face,Lady Gaga,2008,3:57

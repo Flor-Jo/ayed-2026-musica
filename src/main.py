@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from src.config import TEMA
 from src.dominio.biblioteca import Biblioteca
 from src.dominio.cancion import Cancion
@@ -267,8 +268,11 @@ def main():
                 print("Opción inválida dentro de cola.")
 
         elif opcion == "9":
-            ruta_txt = os.path.join("data", "canciones.txt")
-            ruta_bin = os.path.join("data", "canciones.bin")
+            # Anclamos las rutas a la raíz del repo (1 nivel arriba de src/main.py)
+            # para evitar FileNotFoundError si se ejecuta el programa desde otra carpeta
+            raiz_repo = Path(__file__).resolve().parents[1]
+            ruta_txt = str(raiz_repo / "data" / "canciones.txt")
+            ruta_bin = str(raiz_repo / "data" / "canciones.bin")
 
             print("\n--- Guardar / Cargar Archivos y ABM Persistente (E5) ---")
             print("a. Guardar catálogo en texto (.txt)")
