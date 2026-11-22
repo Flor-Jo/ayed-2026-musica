@@ -16,7 +16,7 @@ Repositorio del grupo para el Trabajo Práctico Integrador de Algoritmos y Estru
 
 ## Tema Elegido: Biblioteca Musical
 
-Modelado de un catálogo de temas de Pop de los 2000s orientado a objetos, con persistencia, TADs propios, funciones recursivas y algoritmos de búsqueda y ordenamiento manuales[cite: 1, 4].
+Modelado de un catálogo de temas de Pop de los 2000s orientado a objetos, con persistencia, TADs propios, funciones recursivas y algoritmos de búsqueda y ordenamiento manuales.
 
 ---
 
