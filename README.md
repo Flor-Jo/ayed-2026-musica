@@ -52,11 +52,11 @@ ayed-2026-musica/
 ## Cómo Ejecutar
 Desde la raíz del repositorio, utilizando Python 3.10 o superior:
 
-| Bash python -m src.main |
+| python -m src.main |
 
 En entornos Windows, si el comando anterior no responde:
 
-| Bash py -3 -m src.main |
+| py -3 -m src.main |
 
 **Nota: El proyecto depende exclusivamente de la biblioteca estándar de Python (sin librerías externas ni requirements.txt).**
 
