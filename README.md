@@ -69,7 +69,7 @@ En entornos Windows, si el comando anterior no responde:
 | `entrega-2` | Domingo 20-sep-2026 23:59 | Entregado | Modelado con POO (clases del dominio) y operación recursiva con traza. |
 | `entrega-3` | Domingo 04-oct-2026 23:59 | Entregado | TADs propios (ListaEnlazada con iterador, Pila para historial y Cola de reproducción). |
 | `entrega-4` | Domingo 01-nov-2026 23:59 | Entregado | Búsqueda lineal y binaria propias, ordenamiento por selección e inserción, tabla de complejidad y mediciones reales. |
-| `entrega-5` | Domingo 15-nov-2026 23:59 | Pendiente | Persistencia en disco (archivos de texto / CSV / registros binarios con struct). |
-| `entrega-6` | Domingo 22-nov-2026 23:59 | Pendiente | Integración completa, 15 pruebas de regresión ejecutadas y cierre del TP. |
+| `entrega-5` | Domingo 15-nov-2026 23:59 | Entregado | Persistencia en disco (archivos de texto / CSV / registros binarios con struct). |
+| `entrega-6` | Domingo 22-nov-2026 23:59 | Entregado | Integración completa, 15 pruebas de regresión ejecutadas y cierre del TP. |
 
-- **Defensa oral (reemplaza el 2do parcial):** 25 y 27 de noviembre de 2026.
+- **Defensa oral (reemplaza el 2do parcial):** 24 de noviembre de 2026.
